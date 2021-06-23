@@ -42,6 +42,7 @@ class Jugador1(pygame.sprite.Sprite):
         self.puntaje=0
         self.aceleracion = 100.0
         self.rotacion = 0.0
+        self.vida=1000
     def Update(self, dt):
         self.velocidad+= (self.aceleracion * dt, 0)
         self.velocidad.x = max(-self.maxima_velocidad, min(self.velocidad.x, self.maxima_velocidad))
@@ -75,6 +76,7 @@ class Juego:
             jugador1 = Jugador1()
             Meta=meta()
             Minas=minas()
+            cactus=Cactus()
             pressed = pygame.key.get_pressed()
 
             if pressed[pygame.K_UP]:
@@ -109,6 +111,37 @@ class Juego:
             else:
                 jugador1.rotacion = 0
             jugador1.rotacion = max(-jugador1.maxima_rotacion, min(jugador1.rotacion, jugador1.maxima_rotacion))
+            if pressed[pygame.K_w]:
+                jugador2.arranque.play()
+                if jugador2.velocidad.x < 0:
+                    jugador2.aceleracion = jugador2.romper_desaceleracion
+                jugador2.aceleracion += 1 * dt2
+            elif pressed[pygame.K_s]:
+                if jugador2.velocidad.x > 0:
+                    jugador2.aceleracion = -jugador2.romper_desaceleracion
+                else:
+                    jugador2.aceleracion -= 1 * dt2
+            elif pressed[pygame.K_f]:
+                if abs(jugador2.velocidad.x) > dt2 * jugador2.romper_desaceleracion:
+                    jugador2.aceleracion = -copysign(jugador2.romper_desaceleracion, jugador2.velocidad.x)
+                else:
+                    jugador2.aceleracion = -jugador2.velocidad.x / dt2
+            else:
+                if abs(jugador2.velocidad.x) > dt2 * jugador2.desaceleracion_libre:
+                    jugador2.aceleracion = -copysign(jugador2.desaceleracion_libre, jugador2.velocidad.x)
+                else:
+                    if dt2 != 0:
+                        jugador2.aceleracion = -jugador2.velocidad.x / dt2
+            jugador2.aceleracion = max(-jugador2.maxima_aceleracion,
+                                       min(jugador2.aceleracion, jugador2.maxima_aceleracion))
+
+            if pressed[pygame.K_d]:
+                jugador2.rotacion -= 30 * dt2
+            elif pressed[pygame.K_a]:
+                jugador2.rotacion += 30 * dt2
+            else:
+                jugador2.rotacion = 0
+            jugador2.rotacion = max(-jugador2.maxima_rotacion, min(jugador2.rotacion, jugador2.maxima_rotacion))
 
             texto = pygame.font.SysFont("Arial", 20, True, False)
             informacion = texto.render("cronometro", 0, (0, 0, 0))
@@ -124,30 +157,62 @@ class Juego:
             for minados in range(12):
                 Minas.rect.x= random.randrange(ALTURA)
                 Minas.rect.y = random.randrange(ANCHO)
+            for catus in range(12):
+                cactus.rect.x= random.randrange(ALTURA)
+                cactus.rect.y = random.randrange(ANCHO)
+
             objetos = pygame.sprite.Group()
             objetos.add(Meta)
-            objetos.add(Minas)
+            carros=pygame.sprite.group()
+            carros.add(jugador1)
+            carros.add(jugador2)
+            choque = pygame.sprite.spritecollide(cactus, carros, True)
+            if jugador1.vida==0:
+                jugador1.destroy()
+            if choque:
+                explosion=pygame.mxer.sound("sonido/explosion.mp3")
+                explosion.play()
+                jugador1.vida-=1000
             collision = pygame.sprite.spritecollide(jugador1, objetos, False)
             if collision:
                 metasound = pygame.mixer.Sound("sonido/meta.mp3")
                 metasound.play()
                 jugador1.puntaje += 200
-
+            collision = pygame.sprite.spritecollide(jugador2, objetos, False)
+            if collision:
+                metasound = pygame.mixer.Sound("sonido/meta.mp3")
+                metasound.play()
+                jugador2.puntaje += 200
             # logica de actualizacion
             jugador1.update(dt)
+            jugador2.update(dt2)
             self.screen.blit(self.pista1, (0, 0))
             self.screen.blit(self.pista1D, (0, 0))
-            rotated = pygame.transform.rotate(jugador1.image, jugador1.angle)
-            rect = rotated.get_rect()
-            self.screen.blit(rotated, jugador1.position)
-            objetos.draw(self.screen)
+            rotado = pygame.transform.rotate(jugador1.imagen, jugador1.angulo)
+            rect = rotado.get_rect()
+            self.screen.blit(rotado, jugador1.posicion)
+
+            rotado = pygame.transform.rotate(jugador2.image, jugador2.angulo)
+            rect = rotado.get_rect()
+            self.screen.blit(rotado, jugador2.posicion)
+
+            self.screen.blit(puntuacion2, (16, 50))
             self.screen.blit(puntuacion, (16, 30))
             self.screen.blit(informacion, (5, 5))
-            self.screen.blit(infopausa, (850, 15))
-            self.screen.blit(cronometro, (110, 3))
+
+            Cronometraje = pygame.time.get_ticks() // 1000
+            self.clock.tick(self.ticks)
+            cronometraje = str(Cronometraje)
+            cronometro = texto.render(cronometraje, 100, (0, 0, 0))
+            self.screen.blit(cronometro, (110, 5))
+            dummies.draw(self.screen)
+            objetos.draw(self.screen)
 
 
             # actualiza la pantalla a  la cantidad de fps que se le asigno a la variable self.ticks
             pygame.display.flip()
 
             self.clock.tick(self.ticks)
+if __name__=__main__:
+    juego=Juego()
+    
