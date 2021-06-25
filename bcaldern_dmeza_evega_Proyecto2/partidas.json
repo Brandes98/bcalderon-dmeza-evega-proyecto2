@@ -1,0 +1,104 @@
+{
+    "partidas": [
+        {
+            "Nombre Partida": "SSD",
+            "Jugador1": "yy",
+            "Puntuacion1": 15000,
+            "Posicion1": [
+                -113,
+                476
+            ],
+            "Rotacion1": 0,
+            "Aceleracion": -1000.0,
+            "Jugador2": "gruk",
+            "Puntuacion2": 14600,
+            "Posicion22": [
+                496,
+                342
+            ],
+            "Rotacion2": 0,
+            "Aceleracion2": -2.0,
+            "Etapa": 2
+        },
+        {
+            "Nombre Partida": "tdurytij",
+            "Jugador1": "re 6u",
+            "Puntuacion1": 2600,
+            "Posicion1": [
+                1009,
+                -43
+            ],
+            "Rotacion1": 0,
+            "Aceleracion1": -0.0,
+            "Jugador2": "t7i6",
+            "Puntuacion2": 200,
+            "Posicion2": [
+                398,
+                138
+            ],
+            "Rotacion2": 0,
+            "Aceleracion2": -2.0,
+            "Etapa": 2
+        },
+        {
+            "Nombre Partida": "sgd",
+            "Jugador1": "fhfgh",
+            "Puntuacion1": 12800,
+            "Posicion1": [
+                137,
+                446
+            ],
+            "Rotacion1": 0,
+            "Aceleracion1": -0.0,
+            "Jugador2": "fgh",
+            "Puntuacion2": 11800,
+            "Posicion2": [
+                682,
+                185
+            ],
+            "Rotacion2": 0,
+            "Aceleracion2": -0.0,
+            "Etapa": 2
+        },
+        {
+            "Nombre Partida": "CP-O",
+            "Jugador1": "Gerson",
+            "Puntuacion1": 29000,
+            "Posicion1": [
+                828,
+                115
+            ],
+            "Rotacion1": 0,
+            "Aceleracion1": -0.0,
+            "Jugador2": "Pedro",
+            "Puntuacion2": 7800,
+            "Posicion2": [
+                1105,
+                130
+            ],
+            "Rotacion2": 0,
+            "Aceleracion2": -0.0,
+            "Etapa": 2
+        },
+        {
+            "Nombre Partida": "Amonos",
+            "Jugador1": "",
+            "Puntuacion1": 34800,
+            "Posicion1": [
+                780,
+                523
+            ],
+            "Rotacion1": 0,
+            "Aceleracion1": 4.055000000000001,
+            "Jugador2": "",
+            "Puntuacion2": 13200,
+            "Posicion2": [
+                998,
+                86
+            ],
+            "Rotacion2": 0,
+            "Aceleracion2": 2.0,
+            "Etapa": 2
+        }
+    ]
+}

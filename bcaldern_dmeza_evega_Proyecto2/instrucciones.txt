@@ -1,0 +1,30 @@
+Interfaz:
+	-Presione Jugar para jugar con dos jugadores
+		__Introduzca el nombre de los jugadores
+ 		__De click en jugar para comenzar la partida
+	-Presione Cargar para jugar una partida cargada
+		__Seleccione una partida y de click en "Jugar partida"
+	-Presione Clasificaciones para ver los jugadores con 5 mejores puntuaciones
+	-Presione Como Jugar para ver las instrucciones
+	-Presione Salir y confirme que va a salir para cerrar el juego
+Controles:
+	-Auto jugador 1:
+		__Jugara en la pantalla de la izquierda
+		__Se maneja con las teclas W, A, S y D    
+	-Auto jugador 2:
+		__Jugara en la pantalla de la derecha
+		__Se maneja con las teclas de Arriba, abajo, izquierda y derecha
+Puntaje:
+	-Se acumulan puntos:
+		__Al destruir autos dummies
+		__Al recorrer distancia
+		__Pasar un nivel
+	-Se pierden puntos:
+		__Al pasar por una mina
+		__Colisionar con un obstaculo
+		__Caer en un barranco
+Partida:
+	-Se avanza al siguiente nivel pasados 90 segundos
+	-Entre mayor sea el nivel la dificultad aumentara
+	-La mayor dificultad favorece al otorgamiento de mas puntos
+	-Presione P en la para pausar la partida y abrir el menu de pausa

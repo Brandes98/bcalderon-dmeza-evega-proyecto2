@@ -1,0 +1,2 @@
+https://github.com/django-helpdesk/django-helpdesk/issues/621
+https://stackoverflow.com/questions/51562067/connectionabortederror-winerror-10053-an-established-connection-was-aborted-b
